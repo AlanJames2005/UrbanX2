@@ -10,6 +10,9 @@ import {
   MapPin,
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { Database } from '../types/database';
+
+type Complaint = Database['public']['Tables']['complaints']['Row'];
 
 interface Stats {
   totalProjects: number;
@@ -29,7 +32,7 @@ export function Dashboard() {
     activeAlerts: 0,
     resolvedToday: 0,
   });
-  const [recentActivities, setRecentActivities] = useState<any[]>([]);
+  const [recentActivities, setRecentActivities] = useState<Complaint[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

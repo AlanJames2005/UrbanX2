@@ -35,7 +35,7 @@ export function Report() {
     setLoading(true);
 
     try {
-      const { error } = await (supabase.from('complaints') as any).insert({
+      const { error } = await supabase.from('complaints').insert({
         title: formData.title,
         description: formData.description,
         department: formData.department,
@@ -53,8 +53,9 @@ export function Report() {
       setTimeout(() => {
         navigate('/complaints');
       }, 2000);
-    } catch (err: any) {
-      setError(err.message || 'Failed to submit complaint');
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to submit complaint';
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

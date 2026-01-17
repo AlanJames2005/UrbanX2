@@ -1,18 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { MessageSquare, MapPin, Clock, Search } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { Database } from '../types/database';
+
+type Complaint = Database['public']['Tables']['complaints']['Row'];
 
 export function Complaints() {
-  const [complaints, setComplaints] = useState<any[]>([]);
+  const [complaints, setComplaints] = useState<Complaint[]>([]);
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [severityFilter, setSeverityFilter] = useState<string>('all');
 
-  useEffect(() => {
-    fetchComplaints();
-  }, [statusFilter, severityFilter]);
-
-  const fetchComplaints = async () => {
+  const fetchComplaints = useCallback(async () => {
     try {
       let query = supabase.from('complaints').select('*').order('submitted_at', { ascending: false });
 
@@ -31,7 +30,11 @@ export function Complaints() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [statusFilter, severityFilter]);
+
+  useEffect(() => {
+    fetchComplaints();
+  }, [fetchComplaints]);
 
   const getSeverityColor = (severity: string) => {
     switch (severity) {

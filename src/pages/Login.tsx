@@ -19,7 +19,7 @@ export function Login() {
     try {
       await signIn(email, password);
       navigate('/dashboard');
-    } catch (err) {
+    } catch {
       setError('Invalid email or password');
     } finally {
       setLoading(false);
@@ -27,7 +27,7 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] px-4">
+    <div className="flex items-center justify-center min-h-[calc(100vh-6rem)] px-4">
       <div className="w-full max-w-md fade-in">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3b82f6] to-[#8b5cf6] mb-4">
@@ -51,13 +51,13 @@ export function Login() {
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
+                <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
                 <input
                   id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="input-modern pl-10"
+                  className="input-modern pl-12"
                   placeholder="admin@urbanx.com"
                   required
                 />
@@ -69,13 +69,13 @@ export function Login() {
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
+                <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
                 <input
                   id="password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="input-modern pl-10"
+                  className="input-modern pl-12"
                   placeholder="Enter your password"
                   required
                 />

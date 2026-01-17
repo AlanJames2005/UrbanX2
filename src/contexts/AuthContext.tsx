@@ -19,6 +19,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Check if using placeholder credentials (development mode)
+    if (supabase.supabaseUrl.includes('placeholder')) {
+      // In development mode, start with no session
+      setSession(null);
+      setUser(null);
+      setLoading(false);
+      return;
+    }
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
@@ -41,6 +50,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signIn = async (email: string, password: string) => {
+    // Check if using placeholder credentials (development mode)
+    if (supabase.supabaseUrl.includes('placeholder')) {
+      // Simulate successful login for development
+      const mockUser: User = {
+        id: 'dev-user-123',
+        email: email,
+        user_metadata: { name: 'Development User' },
+        app_metadata: {},
+        aud: 'authenticated',
+        created_at: new Date().toISOString(),
+      };
+      const mockSession: Session = {
+        user: mockUser,
+        access_token: 'dev-token',
+        refresh_token: 'dev-refresh-token',
+        expires_at: Date.now() / 1000 + 3600,
+        token_type: 'bearer',
+      };
+      setUser(mockUser);
+      setSession(mockSession);
+      return;
+    }
+
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -49,6 +81,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signUp = async (email: string, password: string) => {
+    // Check if using placeholder credentials (development mode)
+    if (supabase.supabaseUrl.includes('placeholder')) {
+      // Simulate successful signup for development
+      const mockUser: User = {
+        id: 'dev-user-123',
+        email: email,
+        user_metadata: { name: 'Development User' },
+        app_metadata: {},
+        aud: 'authenticated',
+        created_at: new Date().toISOString(),
+      };
+      const mockSession: Session = {
+        user: mockUser,
+        access_token: 'dev-token',
+        refresh_token: 'dev-refresh-token',
+        expires_at: Date.now() / 1000 + 3600,
+        token_type: 'bearer',
+      };
+      setUser(mockUser);
+      setSession(mockSession);
+      return;
+    }
+
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -57,6 +112,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signOut = async () => {
+    // Check if using placeholder credentials (development mode)
+    if (supabase.supabaseUrl.includes('placeholder')) {
+      // Simulate logout for development
+      setUser(null);
+      setSession(null);
+      return;
+    }
+
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
   };

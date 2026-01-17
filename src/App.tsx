@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
-import { SidebarProvider } from './contexts/SidebarContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { MainLayout } from './components/MainLayout';
 import { Home } from './pages/Home';
@@ -17,11 +16,10 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <SidebarProvider>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+        <Routes>
+            <Route path="/" element={<MainLayout><Home /></MainLayout>} />
+            <Route path="/login" element={<MainLayout><Login /></MainLayout>} />
+            <Route path="/register" element={<MainLayout><Register /></MainLayout>} />
 
             <Route
               path="/dashboard"
@@ -91,10 +89,9 @@ function App() {
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-        </SidebarProvider>
-      </AuthProvider>
-    </BrowserRouter>
-  );
-}
+        </AuthProvider>
+      </BrowserRouter>
+    );
+  }
 
 export default App;

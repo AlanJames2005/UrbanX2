@@ -26,26 +26,13 @@ export function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div>
       <div className="animated-bg"></div>
-      <nav className="border-b border-[#1a1a1a] bg-[#0a0a0a]/80 backdrop-blur-lg sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="UrbanX Logo" className="w-8 h-8 object-contain" />
-            <span className="text-xl font-bold text-white">UrbanX</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <Link to="/register" className="btn-primary">
-              Get Started
-            </Link>
-          </div>
-        </div>
-      </nav>
 
-      <div className="max-w-7xl mx-auto px-6 py-20">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16 fade-in">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[#3b82f6] to-[#8b5cf6] mb-6 float hero-glow">
-            <img src="/logo.png" alt="UrbanX Logo" className="w-10 h-10 object-contain" />
+          <div className="inline-flex items-center justify-center mb-6">
+            <img src="/logo.png" alt="UrbanX Logo" className="w-20 h-20 object-contain" />
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
             <span className="gradient-text">Smart City Management</span>

@@ -1,18 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { AlertTriangle, MapPin, Clock } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { Database } from '../types/database';
+
+type RiskAlert = Database['public']['Tables']['risk_alerts']['Row'];
 
 export function Alerts() {
-  const [alerts, setAlerts] = useState<any[]>([]);
+  const [alerts, setAlerts] = useState<RiskAlert[]>([]);
   const [loading, setLoading] = useState(true);
   const [severityFilter, setSeverityFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<string>('all');
 
-  useEffect(() => {
-    fetchAlerts();
-  }, [severityFilter, statusFilter]);
-
-  const fetchAlerts = async () => {
+  const fetchAlerts = useCallback(async () => {
     try {
       let query = supabase.from('risk_alerts').select('*').order('reported_at', { ascending: false });
 
@@ -31,7 +30,11 @@ export function Alerts() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [severityFilter, statusFilter]);
+
+  useEffect(() => {
+    fetchAlerts();
+  }, [fetchAlerts]);
 
   const getSeverityColor = (severity: string) => {
     switch (severity) {
