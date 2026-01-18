@@ -20,7 +20,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     // Check if using placeholder credentials (development mode)
-    if (supabase.supabaseUrl.includes('placeholder')) {
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder.supabase.co';
+    if (supabaseUrl.includes('placeholder')) {
       // In development mode, start with no session
       setSession(null);
       setUser(null);
@@ -28,14 +29,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: { session } }: { data: { session: Session | null } }) => {
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
+      (_event: string, session: Session | null) => {
         (() => {
           (async () => {
             setSession(session);
@@ -51,7 +52,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signIn = async (email: string, password: string) => {
     // Check if using placeholder credentials (development mode)
-    if (supabase.supabaseUrl.includes('placeholder')) {
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder.supabase.co';
+    if (supabaseUrl.includes('placeholder')) {
       // Simulate successful login for development
       const mockUser: User = {
         id: 'dev-user-123',
@@ -66,6 +68,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         access_token: 'dev-token',
         refresh_token: 'dev-refresh-token',
         expires_at: Date.now() / 1000 + 3600,
+        expires_in: 3600,
         token_type: 'bearer',
       };
       setUser(mockUser);
@@ -82,7 +85,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signUp = async (email: string, password: string) => {
     // Check if using placeholder credentials (development mode)
-    if (supabase.supabaseUrl.includes('placeholder')) {
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder.supabase.co';
+    if (supabaseUrl.includes('placeholder')) {
       // Simulate successful signup for development
       const mockUser: User = {
         id: 'dev-user-123',
@@ -97,6 +101,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         access_token: 'dev-token',
         refresh_token: 'dev-refresh-token',
         expires_at: Date.now() / 1000 + 3600,
+        expires_in: 3600,
         token_type: 'bearer',
       };
       setUser(mockUser);
@@ -113,7 +118,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signOut = async () => {
     // Check if using placeholder credentials (development mode)
-    if (supabase.supabaseUrl.includes('placeholder')) {
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder.supabase.co';
+    if (supabaseUrl.includes('placeholder')) {
       // Simulate logout for development
       setUser(null);
       setSession(null);

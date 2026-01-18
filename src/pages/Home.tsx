@@ -92,6 +92,69 @@ export function Home() {
               <p className="text-[#a1a1aa]">Less avoidable rework</p>
             </div>
           </div>
+
+          <div className="mt-12 pt-8 border-t border-[#1a1a1a]">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <p className="text-2xl font-bold text-[#10b981] mb-1">12</p>
+                <p className="text-sm text-[#a1a1aa]">Active Projects</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-[#3b82f6] mb-1">15</p>
+                <p className="text-sm text-[#a1a1aa]">Complaints Resolved</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-[#f59e0b] mb-1">11</p>
+                <p className="text-sm text-[#a1a1aa]">Risk Alerts Today</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-[#8b5cf6] mb-1">3</p>
+                <p className="text-sm text-[#a1a1aa]">Departments</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">Success Stories</h2>
+            <p className="text-[#a1a1aa]">See how UrbanX is transforming cities</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="card-modern text-center stagger-1">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#10b981] to-[#059669] rounded-full flex items-center justify-center mx-auto mb-4">
+                <TrendingUp className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">Metro City</h3>
+              <p className="text-[#a1a1aa] mb-4">
+                "UrbanX helped us coordinate 15 infrastructure projects simultaneously, saving $2.3M in avoided rework and reducing completion time by 35%."
+              </p>
+              <p className="text-sm text-[#71717a]">City Infrastructure Director</p>
+            </div>
+
+            <div className="card-modern text-center stagger-2">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#3b82f6] to-[#1d4ed8] rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">Coastal Town</h3>
+              <p className="text-[#a1a1aa] mb-4">
+                "Real-time risk monitoring prevented 3 potential safety incidents. Our response time improved from 45 minutes to under 10 minutes."
+              </p>
+              <p className="text-sm text-[#71717a]">Emergency Services Manager</p>
+            </div>
+
+            <div className="card-modern text-center stagger-3">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#8b5cf6] to-[#7c3aed] rounded-full flex items-center justify-center mx-auto mb-4">
+                <MessageSquare className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">River Valley</h3>
+              <p className="text-[#a1a1aa] mb-4">
+                "Citizen complaints are now resolved 60% faster. The interactive map helps us prioritize issues by location and urgency."
+              </p>
+              <p className="text-sm text-[#71717a]">Public Services Coordinator</p>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -141,15 +141,15 @@ export function Complaints() {
                   </div>
                   <p className="text-[#a1a1aa] text-sm mb-3">{complaint.description}</p>
                   <div className="flex flex-wrap gap-4 text-xs text-[#71717a]">
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-2">
                       <MapPin className="w-3 h-3" />
                       {complaint.location || 'No location'}
                     </span>
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-2">
                       <Clock className="w-3 h-3" />
                       {new Date(complaint.submitted_at).toLocaleDateString()}
                     </span>
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-2">
                       <MessageSquare className="w-3 h-3" />
                       {complaint.department}
                     </span>

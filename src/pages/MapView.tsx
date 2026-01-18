@@ -28,7 +28,7 @@ const icons = {
 function MapUpdater({ center }: { center: [number, number] }) {
   const map = useMap();
   useEffect(() => {
-    map.setView(center, 13);
+    map.setView(center, 5);
   }, [center, map]);
   return null;
 }
@@ -43,7 +43,7 @@ export function MapView() {
     projects: true,
     alerts: true,
   });
-  const [center, setCenter] = useState<[number, number]>([40.7128, -74.0060]);
+  const [center, setCenter] = useState<[number, number]>([20.5937, 78.9629]);
 
   useEffect(() => {
     fetchMapData();
@@ -153,7 +153,7 @@ export function MapView() {
       <div className="card-modern p-0 overflow-hidden" style={{ height: '600px' }}>
         <MapContainer
           center={center}
-          zoom={13}
+          zoom={5}
           style={{ height: '100%', width: '100%' }}
           className="rounded-lg"
         >

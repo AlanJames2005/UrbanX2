@@ -183,11 +183,11 @@ export function Dashboard() {
                   <p className="text-white font-medium truncate">{activity.title}</p>
                   <p className="text-sm text-[#71717a] mt-1 line-clamp-2">{activity.description}</p>
                   <div className="flex items-center gap-4 mt-2 text-xs text-[#71717a]">
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-2">
                       <MapPin className="w-3 h-3" />
                       {activity.location || 'No location'}
                     </span>
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-2">
                       <Clock className="w-3 h-3" />
                       {new Date(activity.submitted_at).toLocaleDateString()}
                     </span>

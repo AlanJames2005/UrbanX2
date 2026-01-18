@@ -59,6 +59,13 @@ npm install --legacy-peer-deps
 VITE_SUPABASE_URL=your_supabase_project_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
+   - Add your Google Maps API key (get from [Google Cloud Console](https://console.cloud.google.com)):
+```env
+VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+```
+   - Enable these Google Maps APIs:
+     - Maps JavaScript API
+     - Geocoding API
 
 5. Start the development server:
 ```bash
@@ -86,6 +93,28 @@ The platform uses four main tables:
 ### Risk Alerts
 - Safety and infrastructure alerts
 - Multiple severity levels (critical, high, medium, low)
+
+## Location Selection Features
+
+The Report an Issue page includes advanced location selection capabilities:
+
+### Interactive Map Selection
+- **Google Maps Integration**: Click-to-select locations on an interactive map
+- **India-Focused**: Map centered on India with appropriate zoom level
+- **Visual Feedback**: Draggable markers with real-time position updates
+- **Reverse Geocoding**: Automatic address resolution from selected coordinates
+
+### Geotagged Photo Upload
+- **EXIF Data Extraction**: Automatically reads GPS coordinates from photo metadata
+- **Address Resolution**: Converts coordinates to readable addresses
+- **User-Friendly**: No need for manual latitude/longitude entry
+- **Error Handling**: Clear feedback for photos without location data
+
+### Key Benefits
+- **Accuracy**: Precise location data through visual selection or photo upload
+- **User Experience**: Intuitive location selection without technical knowledge
+- **Flexibility**: Multiple ways to specify location (map click, photo upload)
+- **Offline Capability**: Photo-based location works without internet for coordinate extraction
 
 ## Usage
 

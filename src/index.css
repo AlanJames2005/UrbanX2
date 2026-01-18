@@ -1,3 +1,6 @@
+/* Tailwind CSS file - @tailwind and @apply directives are valid */
+/* This file uses Tailwind CSS utility classes and directives */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 
 @tailwind base;
@@ -47,6 +50,7 @@ code, pre {
   .card-modern {
     @apply bg-[#111111] rounded-lg border border-[#1a1a1a] p-6 transition-all duration-300;
     @apply hover:border-[#3b82f6]/30 hover:shadow-lg hover:shadow-[#3b82f6]/5;
+    @apply hover:transform hover:-translate-y-1 hover:shadow-xl hover:shadow-[#3b82f6]/10;
   }
 
   .btn-primary {
@@ -87,7 +91,7 @@ code, pre {
   }
 
   .badge {
-    @apply px-3 py-1 rounded-full text-xs font-medium inline-flex items-center gap-1;
+    @apply px-3 py-1 rounded-full text-xs font-medium inline-flex items-center gap-2;
   }
 
   .badge-success {
@@ -176,6 +180,7 @@ code, pre {
     height: 2px;
     background: linear-gradient(90deg, transparent, rgba(135, 206, 235, 0.6), transparent);
     border-radius: 1px;
+    animation: activeIndicator 0.3s ease-out;
   }
 
   .navbar-search {
@@ -229,6 +234,7 @@ code, pre {
       0 4px 16px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.08);
     z-index: 60;
+    animation: dropdownEnter 0.2s ease-out;
   }
 
   .navbar-dropdown::before {
@@ -500,6 +506,43 @@ code, pre {
   }
   50% {
     background-position: 100% 50%;
+  }
+}
+
+.page-transition {
+  animation: pageEnter 0.4s ease-out;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes activeIndicator {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 20px;
+    opacity: 1;
+  }
+}
+
+@keyframes dropdownEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 

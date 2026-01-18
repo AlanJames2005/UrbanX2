@@ -81,13 +81,13 @@ export function Register() {
                   Full Name
                 </label>
                 <div className="relative">
-                  <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
+                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
                   <input
                     id="name"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="input-modern pl-12"
+                    className="input-modern pl-14"
                     placeholder="John Doe"
                     required
                   />
@@ -99,13 +99,13 @@ export function Register() {
                   Email Address
                 </label>
                 <div className="relative">
-                  <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
                   <input
                     id="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="input-modern pl-12"
+                    className="input-modern pl-14"
                     placeholder="you@example.com"
                     required
                   />
@@ -117,13 +117,13 @@ export function Register() {
                   Password
                 </label>
                 <div className="relative">
-                  <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
                   <input
                     id="password"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="input-modern pl-12"
+                    className="input-modern pl-14"
                     placeholder="At least 6 characters"
                     required
                   />
@@ -135,13 +135,13 @@ export function Register() {
                   Confirm Password
                 </label>
                 <div className="relative">
-                  <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
                   <input
                     id="confirmPassword"
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="input-modern pl-12"
+                    className="input-modern pl-14"
                     placeholder="Confirm your password"
                     required
                   />
@@ -163,9 +163,18 @@ export function Register() {
                 Welcome to UrbanX Smart City Management Platform
               </p>
             </div>
+
+            <div className="mt-4 text-center animate-fade-in" style={{ animationDelay: '0.9s' }}>
+              <p className="text-sm text-[#a1a1aa]">
+                Already have an account?{' '}
+                <Link to="/login" className="text-[#3b82f6] hover:text-[#2563eb] transition-colors">
+                  Sign in
+                </Link>
+              </p>
+            </div>
           </div>
 
-          <p className="text-center text-xs text-[#71717a] mt-8 animate-fade-in" style={{ animationDelay: '0.9s' }}>
+          <p className="text-center text-xs text-[#71717a] mt-8 animate-fade-in" style={{ animationDelay: '1.0s' }}>
             Powered by UrbanX - Smart City Management Platform
           </p>
         </div>

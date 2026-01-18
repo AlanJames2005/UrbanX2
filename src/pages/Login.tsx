@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Building2, Mail, Lock, AlertCircle } from 'lucide-react';
+import { Mail, Lock, AlertCircle } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 export function Login() {
@@ -30,10 +30,10 @@ export function Login() {
     <div className="flex items-center justify-center min-h-[calc(100vh-6rem)] px-4">
       <div className="w-full max-w-md fade-in">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3b82f6] to-[#8b5cf6] mb-4">
-            <Building2 className="w-8 h-8 text-white" />
+          <div className="inline-flex items-center justify-center mb-4">
+            <img src="/logo.png" alt="UrbanX Logo" className="w-16 h-16" />
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">Welcome to UrbanX</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">Welcome to <span className="text-green-400">Urban</span><span className="text-blue-400">X</span></h1>
           <p className="text-[#a1a1aa]">Smart City Management Platform</p>
         </div>
 
@@ -51,13 +51,13 @@ export function Login() {
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
                 <input
                   id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="input-modern pl-12"
+                  className="input-modern pl-14"
                   placeholder="admin@urbanx.com"
                   required
                 />
@@ -69,13 +69,13 @@ export function Login() {
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
                 <input
                   id="password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="input-modern pl-12"
+                  className="input-modern pl-14"
                   placeholder="Enter your password"
                   required
                 />

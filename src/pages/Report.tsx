@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MapPin, AlertCircle, CheckCircle } from 'lucide-react';
+import { AlertCircle, CheckCircle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import type { Database } from '../types/database';
+import { LocationSelector } from '../components/LocationSelector';
 
 export function Report() {
   const navigate = useNavigate();
@@ -11,8 +13,8 @@ export function Report() {
     department: '',
     severity: 'medium',
     location: '',
-    latitude: '',
-    longitude: '',
+    latitude: null as number | null,
+    longitude: null as number | null,
     submittedBy: '',
     contactInfo: '',
   });
@@ -24,9 +26,6 @@ export function Report() {
     { value: 'roads', label: 'Roads & Transportation' },
     { value: 'water', label: 'Water Supply' },
     { value: 'electricity', label: 'Electricity' },
-    { value: 'telecom', label: 'Telecommunications' },
-    { value: 'waste', label: 'Waste Management' },
-    { value: 'safety', label: 'Public Safety' },
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -35,17 +34,19 @@ export function Report() {
     setLoading(true);
 
     try {
-      const { error } = await supabase.from('complaints').insert({
+      const insertData: Database['public']['Tables']['complaints']['Insert'] = {
         title: formData.title,
         description: formData.description,
         department: formData.department,
         severity: formData.severity as 'high' | 'medium' | 'low',
         location: formData.location,
-        latitude: formData.latitude ? parseFloat(formData.latitude) : null,
-        longitude: formData.longitude ? parseFloat(formData.longitude) : null,
+        latitude: formData.latitude,
+        longitude: formData.longitude,
         submitted_by: formData.submittedBy,
         contact_info: formData.contactInfo,
-      });
+      };
+
+      const { error } = await supabase.from('complaints').insert(insertData);
 
       if (error) throw error;
 
@@ -65,9 +66,18 @@ export function Report() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleLocationSelect = (location: { address: string; latitude: number; longitude: number }) => {
+    setFormData({
+      ...formData,
+      location: location.address,
+      latitude: location.latitude,
+      longitude: location.longitude,
+    });
+  };
+
   return (
     <div className="max-w-3xl mx-auto fade-in">
-      <div className="mb-8">
+      <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-white mb-2">Report an Issue</h1>
         <p className="text-[#a1a1aa]">Submit a complaint or report a problem in your area</p>
       </div>
@@ -170,55 +180,7 @@ export function Report() {
           </div>
         </div>
 
-        <div>
-          <label htmlFor="location" className="block text-sm font-medium text-white mb-2">
-            Location
-          </label>
-          <div className="relative">
-            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#71717a]" />
-            <input
-              id="location"
-              name="location"
-              type="text"
-              value={formData.location}
-              onChange={handleChange}
-              className="input-modern pl-10"
-              placeholder="Street address or landmark"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label htmlFor="latitude" className="block text-sm font-medium text-white mb-2">
-              Latitude (Optional)
-            </label>
-            <input
-              id="latitude"
-              name="latitude"
-              type="text"
-              value={formData.latitude}
-              onChange={handleChange}
-              className="input-modern"
-              placeholder="e.g., 40.7128"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="longitude" className="block text-sm font-medium text-white mb-2">
-              Longitude (Optional)
-            </label>
-            <input
-              id="longitude"
-              name="longitude"
-              type="text"
-              value={formData.longitude}
-              onChange={handleChange}
-              className="input-modern"
-              placeholder="e.g., -74.0060"
-            />
-          </div>
-        </div>
+        <LocationSelector onLocationSelect={handleLocationSelect} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
